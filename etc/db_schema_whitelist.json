@@ -1,0 +1,75 @@
+{
+    "boolfly_productlabel_rule": {
+        "column": {
+            "rule_id": true,
+            "title": true,
+            "type": true,
+            "description": true,
+            "priority": true,
+            "status": true,
+            "from_date": true,
+            "to_date": true,
+            "conditions_serialized": true,
+            "display_in_cat": true,
+            "cat_position": true,
+            "cat_label_type": true,
+            "cat_image": true,
+            "cat_text": true,
+            "css_style_cat": true,
+            "display_in_product": true,
+            "product_position": true,
+            "product_label_type": true,
+            "product_image": true,
+            "product_text": true,
+            "css_style_product": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "BOOLFLY_PRODUCTLABEL_RULE_RULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "boolfly_productlabel_store": {
+        "column": {
+            "rule_id": true,
+            "store_id": true
+        },
+        "index": {
+            "BOOLFLY_PRODUCTLABEL_STORE_RULE_ID": true,
+            "BOOLFLY_PRODUCTLABEL_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BOOLFLY_PRDLBL_STORE_RULE_ID_BOOLFLY_PRDLBL_RULE_RULE_ID": true,
+            "BOOLFLY_PRODUCTLABEL_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "boolfly_productlabel_customer_group": {
+        "column": {
+            "rule_id": true,
+            "customer_group_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BOOLFLY_PRDLBL_CSTR_GROUP_RULE_ID_BOOLFLY_PRDLBL_RULE_RULE_ID": true,
+            "BOOLFLY_PRDLBL_CSTR_GROUP_CSTR_GROUP_ID_CSTR_GROUP_CSTR_GROUP_ID": true
+        }
+    },
+    "boolfly_productlabel_product_index_rule": {
+        "column": {
+            "rule_id": true,
+            "product_id": true
+        },
+        "index": {
+            "BOOLFLY_PRODUCTLABEL_PRODUCT_INDEX_RULE_RULE_ID": true,
+            "BOOLFLY_PRODUCTLABEL_PRODUCT_INDEX_RULE_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "BOOLFLY_PRDLBL_PRD_IDX_RULE_RULE_ID_BOOLFLY_PRDLBL_RULE_RULE_ID": true
+        }
+    }
+}

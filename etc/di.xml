@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Product Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <preference for="Boolfly\ProductLabel\Api\Data\RuleInterface" type="Boolfly\ProductLabel\Model\Rule"/>
+   <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+      <arguments>
+         <argument name="collections" xsi:type="array">
+            <item name="boolfly_label_rule_listing_data_source" xsi:type="string">BoolflyLabelRuleCollection</item>
+         </argument>
+      </arguments>
+   </type>
+   <virtualType name="BoolflyLabelRuleCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+      <arguments>
+         <argument name="mainTable" xsi:type="string">boolfly_productlabel_rule</argument>
+         <argument name="resourceModel" xsi:type="string">Boolfly\ProductLabel\Model\ResourceModel\Rule</argument>
+      </arguments>
+   </virtualType>
+
+   <virtualType name="LabelImageUploader" type="Boolfly\Base\Model\ImageUploader">
+      <arguments>
+         <argument name="baseTmpPath" xsi:type="string">tmp/boolfly/label</argument>
+         <argument name="basePath" xsi:type="string">boolfly/label</argument>
+      </arguments>
+   </virtualType>
+   <type name="Boolfly\ProductLabel\Controller\Adminhtml\Image\Upload">
+      <arguments>
+         <argument name="imageUploader" xsi:type="object">LabelImageUploader</argument>
+      </arguments>
+   </type>
+   <type name="Boolfly\ProductLabel\Observer\ProcessingImageUpload">
+      <arguments>
+         <argument name="imageUploader" xsi:type="object">LabelImageUploader</argument>
+      </arguments>
+   </type>
+   <type name="Boolfly\ProductLabel\Model\Rule">
+      <arguments>
+         <argument name="imageUploader" xsi:type="object">LabelImageUploader</argument>
+      </arguments>
+   </type>
+   <type name="Boolfly\ProductLabel\Model\Rule\DataProvider">
+      <arguments>
+         <argument name="imageUploader" xsi:type="object">LabelImageUploader</argument>
+      </arguments>
+   </type>
+   <type name="Magento\Catalog\Block\Product\AbstractProduct">
+         <plugin name="setProductForImageBlock" type="Boolfly\ProductLabel\Plugin\Catalog\Block\ProductPlugin"/>
+   </type>
+   <type name="Magento\Catalog\Block\Product\Image">
+      <plugin name="addLabelToProductImage" type="Boolfly\ProductLabel\Plugin\Catalog\Block\Product\ImagePlugin"/>
+   </type>
+
+</config>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Product Label
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">boolfly_label_rule_form.boolfly_label_rule_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">New Rule</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Boolfly\Base\Block\Adminhtml\Edit\Button\Back"/>
+            <button name="save" class="Boolfly\Base\Block\Adminhtml\Edit\Button\Save"/>
+            <button name="delete" class="Boolfly\Base\Block\Adminhtml\Edit\Button\Delete"/>
+            <button name="save_and_continue" class="Boolfly\Base\Block\Adminhtml\Edit\Button\SaveAndContinue"/>
+        </buttons>
+        <namespace>boolfly_label_rule_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>boolfly_label_rule_form.boolfly_label_rule_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="boolfly_label_rule_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Boolfly\ProductLabel\Model\Rule\DataProvider" name="boolfly_label_rule_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>rule_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General</item>
+                <item name="additionalClasses" xsi:type="string">fieldset-schedule</item>
+            </item>
+        </argument>
+        <field name="rule_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="dataScope" xsi:type="string">rule_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">0</map>
+                            <map name="true" xsi:type="string">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="title" formElement="input">
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <label translate="true">Title</label>
+            </settings>
+        </field>
+        <field name="type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Boolfly\ProductLabel\Model\Source\Config\Type</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="notice" xsi:type="string"><![CDATA[If Type=Custom, define style in Css Code field below]]></item>
+                </item>
+            </argument>
+        </field>
+        <field name="description" formElement="textarea">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Description</label>
+            </settings>
+        </field>
+        <field name="store_ids" formElement="multiselect">
+            <settings>
+                <label translate="true">Store View</label>
+                <dataType>text</dataType>
+                <dataScope>store_ids</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Boolfly\ProductLabel\Model\Source\Config\Store"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="customer_group_ids" formElement="multiselect">
+            <settings>
+                <label translate="true">Customer Groups</label>
+                <dataType>text</dataType>
+                <dataScope>customer_group_ids</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Boolfly\ProductLabel\Model\Source\Config\CustomerGroup"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        <field name="from_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">From</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="dataScope" xsi:type="string">from_date</item>
+                </item>
+            </argument>
+        </field>
+        <field name="to_date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">To</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="dataScope" xsi:type="string">to_date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Priority</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="dataScope" xsi:type="string">priority</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="conditions">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <container name="conditions_apply_to">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Boolfly\ProductLabel\Block\Adminhtml\Rule\Conditions</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="category_page" sortOrder="30">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Product Listing</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="display_in_cat" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translate="true">Is Display</item>
+                </item>
+            </argument>
+        </field>
+        <field name="cat_position" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Boolfly\ProductLabel\Model\Source\Config\Position</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Position</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <imports>
+                    <link name="visible">ns = ${ $.ns }, index = display_in_cat:checked</link>
+                    <link name="disabled">!ns = ${ $.ns }, index = display_in_cat:checked</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="cat_label_type" formElement="select" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dependValues" xsi:type="string">custom</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Label Type</label>
+                <dataType>text</dataType>
+                <imports>
+                    <link name="visible">ns = ${ $.ns }, index = display_in_cat:checked</link>
+                    <link name="disabled">!ns = ${ $.ns }, index = display_in_cat:checked</link>
+                    <link name="forceUpdateValue">ns = ${ $.ns }, index = display_in_cat:checked</link>
+                </imports>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Boolfly\ProductLabel\Model\Source\Config\LabelType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="cat_text" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Text</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="dataScope" xsi:type="string">cat_text</item>
+                    <item name="dependValues" xsi:type="string">2</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <imports>
+                    <link name="setCustomVisibleProperty">ns = ${ $.ns }, index = cat_label_type:disabled</link>
+                    <link name="updateCustomProperty">ns = ${ $.ns }, index = cat_label_type:value</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="cat_image" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
+                    <item name="additionalClasses" xsi:type="string">dropzone</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="dependValues" xsi:type="string">1</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="*/image/upload"/>
+                    </item>
+                    <item name="notice" xsi:type="string"><![CDATA[Allowed file types: jpeg, gif, png.]]></item>
+                </item>
+            </argument>
+            <settings>
+                <imports>
+                    <link name="setCustomVisibleProperty">ns = ${ $.ns }, index = cat_label_type:disabled</link>
+                    <link name="updateCustomProperty">ns = ${ $.ns }, index = cat_label_type:value</link>
+                </imports>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="css_style_cat" formElement="textarea" sortOrder="80">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">CSS Style Code</label>
+                <imports>
+                    <link name="visible">ns = ${ $.ns }, index = display_in_cat:checked</link>
+                    <link name="disabled">!ns = ${ $.ns }, index = display_in_cat:checked</link>
+                </imports>
+            </settings>
+            <formElements>
+                <textarea>
+                    <settings>
+                        <rows>6</rows>
+                    </settings>
+                </textarea>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="product_page" sortOrder="50">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Product Page</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="display_in_product" sortOrder="10">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translate="true">Is Display</item>
+                </item>
+            </argument>
+        </field>
+        <field name="product_position" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Boolfly\ProductLabel\Model\Source\Config\Position</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Position</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <imports>
+                    <link name="visible">ns = ${ $.ns }, index = display_in_product:checked</link>
+                    <link name="disabled">!ns = ${ $.ns }, index = display_in_product:checked</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="product_label_type" formElement="select" sortOrder="30">
+            <settings>
+                <label translate="true">Label Type</label>
+                <dataType>text</dataType>
+                <imports>
+                    <link name="visible">ns = ${ $.ns }, index = display_in_product:checked</link>
+                    <link name="disabled">!ns = ${ $.ns }, index = display_in_product:checked</link>
+                    <link name="forceUpdateValue">ns = ${ $.ns }, index = display_in_product:checked</link>
+                </imports>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Boolfly\ProductLabel\Model\Source\Config\LabelType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="product_text" sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Text</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">label_rule</item>
+                    <item name="dataScope" xsi:type="string">product_text</item>
+                    <item name="dependValues" xsi:type="string">2</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <imports>
+                    <link name="setCustomVisibleProperty">ns = ${ $.ns }, index = product_label_type:disabled</link>
+                    <link name="updateCustomProperty">ns = ${ $.ns }, index = product_label_type:value</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="product_image" sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
+                    <item name="additionalClasses" xsi:type="string">dropzone</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="dependValues" xsi:type="string">1</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="*/image/upload"/>
+                    </item>
+                    <item name="notice" xsi:type="string"><![CDATA[Allowed file types: jpeg, gif, png.]]></item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <imports>
+                    <link name="setCustomVisibleProperty">ns = ${ $.ns }, index = product_label_type:disabled</link>
+                    <link name="updateCustomProperty">ns = ${ $.ns }, index = product_label_type:value</link>
+                </imports>
+            </settings>
+        </field>
+        <field name="css_style_product" formElement="textarea" sortOrder="80">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">CSS Style Code</label>
+                <imports>
+                    <link name="visible">ns = ${ $.ns }, index = display_in_product:checked</link>
+                    <link name="disabled">!ns = ${ $.ns }, index = display_in_product:checked</link>
+                </imports>
+            </settings>
+            <formElements>
+                <textarea>
+                    <settings>
+                        <rows>6</rows>
+                    </settings>
+                </textarea>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

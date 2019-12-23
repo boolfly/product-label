@@ -1,0 +1,119 @@
+.product-label-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  .product-label{
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    display: table;
+    line-height: 20px;
+    padding: 4px 6px 2px 5px;
+    margin-bottom: 5px;
+    box-shadow: 1px 1px 1px dimgray;
+    img {
+      max-height: 48px;
+    }
+    span {
+      padding: 2px 4px;
+      display: block;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    &.sale {
+      background: #f71602;
+
+    }
+    &.best-seller {
+      background: #007fd4;
+    }
+    &.new {
+      background: #048500d6;
+    }
+    &.custom {
+      color: #000;
+      box-shadow: none;
+    }
+  }
+  &.top-right {
+    top: 0;
+    right: 0;
+    margin-top: 0 !important;
+    left: auto !important;
+    margin-left: 0 !important;
+  }
+  &.top-left {
+    top: 0;
+    margin-top: 0 !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    right: auto;
+  }
+  &.bot-right {
+    top: auto !important;
+    margin-top: 0 !important;
+    left: auto !important;
+    margin-left: 0 !important;
+    bottom: 0;
+    right: 0;
+  }
+  &.bot-left {
+    top: auto !important;
+    margin-top: 0 !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    bottom: 0;
+    right: auto;
+  }
+  &.mid-left {
+    top: 50%;
+    left: 0;
+    margin-left: 0 !important;
+    right: auto;
+  }
+  &.mid-right {
+    top: 50%;
+    left: auto;
+    margin-left: 0 !important;
+    right: 0;
+  }
+  &.mid-mid {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+  }
+  &.top-mid {
+    top: 0;
+    margin-top: 0 !important;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+  }
+  &.bot-mid {
+    top: auto;
+    bottom: 0;
+    margin-top: 0 !important;
+    left: 50%;
+    right: auto;
+  }
+}
+.product-image-container {
+  position: relative;
+}
+
+.product.media {
+  position: relative;
+}
+
+.products-grid {
+  .product-item {
+    .product-item-info:hover {
+      z-index: 1501;
+      .product-label {
+        box-shadow: none;
+      }
+    }
+  }
+}

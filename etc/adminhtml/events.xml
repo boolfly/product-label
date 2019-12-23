@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Product Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="boolfly_label_rule_save_after">
+        <observer name="generateToFlatTable" instance="Boolfly\ProductLabel\Observer\AfterSaveRule"/>
+    </event>
+    <event name="controller_boolfly_label_rule_save_entity_before">
+        <observer name="processingImageUpload" instance="Boolfly\ProductLabel\Observer\ProcessingImageUpload"/>
+    </event>
+    <event name="controller_action_catalog_product_save_entity_after">
+        <observer name="updateRuleAfterSaveProduct" instance="Boolfly\ProductLabel\Observer\UpdateRuleAfterProductSave"/>
+    </event>
+</config>

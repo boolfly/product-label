@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Product Label
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="boolfly_productlabel_rule" resource="default" engine="innodb"
+           comment="Boolfly product label rule table">
+        <column xsi:type="int" name="rule_id" padding="11" nullable="false" unsigned="false" identity="true"
+                comment="Rule Id"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="smallint" name="type" nullable="false" padding="5" comment="Label Type"/>
+        <column xsi:type="varchar" name="description" nullable="true" length="255" comment="Description"/>
+        <column xsi:type="smallint" name="priority" nullable="true" padding="6" comment="Priority"/>
+        <column xsi:type="smallint" name="status" nullable="false" padding="6" comment="Status"/>
+        <column xsi:type="timestamp" name="from_date" on_update="false" nullable="true" comment="From Date"/>
+        <column xsi:type="timestamp" name="to_date" on_update="false" nullable="true" comment="To Date"/>
+        <column xsi:type="text" name="conditions_serialized" nullable="true" comment="Conditions Serialized"/>
+        <column xsi:type="smallint" name="display_in_cat" nullable="false" padding="6" comment="Display In Category"/>
+        <column xsi:type="varchar" name="cat_position" nullable="false" length="100" comment="Position in Category"/>
+        <column xsi:type="smallint" name="cat_label_type" nullable="false" padding="6" comment="Label Type Category"/>
+        <column xsi:type="varchar" name="cat_image" nullable="true" length="255" comment="Category Image"/>
+        <column xsi:type="varchar" name="cat_text" nullable="true" length="255" comment="Category Text"/>
+        <column xsi:type="text" name="css_style_cat" nullable="true" comment="Css code at Category"/>
+        <column xsi:type="smallint" name="display_in_product" nullable="false" padding="6" comment="Display In Product"/>
+        <column xsi:type="varchar" name="product_position" nullable="false" length="100" comment="Position in Product"/>
+        <column xsi:type="smallint" name="product_label_type" nullable="false" padding="6" comment="Label Type Product"/>
+        <column xsi:type="varchar" name="product_image" nullable="true" length="255" comment="Category Image"/>
+        <column xsi:type="varchar" name="product_text" nullable="true" length="255" comment="Category Text"/>
+        <column xsi:type="text" name="css_style_product" nullable="true" comment="Css code at Product"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+        <index referenceId="BOOLFLY_PRODUCT_LABEL_RULE_ID" indexType="btree">
+            <column name="rule_id"/>
+        </index>
+    </table>
+    <table name="boolfly_productlabel_store" resource="default" engine="innodb"
+           comment="Boolfly product label store table">
+        <column xsi:type="int" name="rule_id" padding="11" nullable="false" unsigned="false" identity="false"
+                comment="Rule ID"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="CSTR_BOOLFLY_PRODUCT_LABEL_STORE_RULE_ID_TO_RULE_ID"
+                    table="boolfly_productlabel_store" column="rule_id"
+                    referenceTable="boolfly_productlabel_rule"
+                    referenceColumn="rule_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="CSTR_BOOLFLY_PRODUCT_LABEL_STORE_STORE_ID_TO_STORE_ID"
+                    table="bf_megamenu_store" column="store_id"
+                    referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="BOOLFLY_PRODUCT_LABEL_STORE_RULE_ID" indexType="btree">
+            <column name="rule_id"/>
+        </index>
+        <index referenceId="BOOLFLY_PRODUCT_LABEL_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="boolfly_productlabel_customer_group" resource="default" engine="innodb"
+                comment="Boolfly product label customer group table">
+        <column xsi:type="int" name="rule_id" padding="11" nullable="false" unsigned="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+            referenceId="CSTR_BOOLFLY_PRODUCT_LABEL_CUSTOMER_GROUP_RULE_ID_TO_RULE_ID"
+            table="boolfly_productlabel_customer_group" column="rule_id"
+            referenceTable="boolfly_productlabel_rule"
+            referenceColumn="rule_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+            referenceId="CSTR_BOOLFLY_PRODUCT_LABEL_CUSTOMER_GROUP_CUSTOMER_GROUP_TO_CUSTOMER_GROUP_ID"
+            table="boolfly_productlabel_customer_group" column="customer_group_id"
+            referenceTable="customer_group"
+            referenceColumn="customer_group_id" onDelete="CASCADE"/>
+    </table>
+    <table name="boolfly_productlabel_product_index_rule" resource="default" engine="innodb"
+           comment="Boolfly Mega Menu item table">
+        <column xsi:type="int" name="rule_id" padding="11" nullable="false" unsigned="false" identity="false" comment="Rule Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="product_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="CSTR_BOOLFLY_PRODUCT_LABEL_INDEX_RULE_RULE_ID_TO_RULE_ID"
+                    table="boolfly_productlabel_product_index_rule" column="rule_id"
+                    referenceTable="boolfly_productlabel_rule"
+                    referenceColumn="rule_id" onDelete="CASCADE"/>
+        <index referenceId="BOOLFLY_PRODUCT_LABEL_INDEX_RULE_RULE_ID" indexType="btree">
+            <column name="rule_id"/>
+        </index>
+        <index referenceId="BOOLFLY_PRODUCT_LABEL_INDEX_RULE_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+</schema>

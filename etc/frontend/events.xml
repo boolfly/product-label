@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Product Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_block_product_list_collection">
+        <observer name="addLabelRuleIds" instance="Boolfly\ProductLabel\Observer\AfterLoadProductCollection"/>
+    </event>
+    <event name="catalog_product_load_after">
+        <observer name="labelRule" instance="Boolfly\ProductLabel\Observer\AddLabelRuleData"/>
+    </event>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Product Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Boolfly_ProductLabel::manager" title="Product Label" module="Boolfly_ProductLabel" resource="Boolfly_ProductLabel::manager" parent="Magento_Catalog::catalog" sortOrder="200"/>
+        <add id="Boolfly_ProductLabel::rule" title="Manager Rule" module="Boolfly_ProductLabel" action="product_label/rule/index" resource="Boolfly_ProductLabel::rule" parent="Boolfly_ProductLabel::manager"/>
+    </menu>
+</config>

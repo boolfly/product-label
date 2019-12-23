@@ -1,0 +1,33 @@
+<?php
+/************************************************************
+ * *
+ *  * Copyright © Boolfly. All rights reserved.
+ *  * See COPYING.txt for license details.
+ *  *
+ *  * @author    info@boolfly.com
+ * *  @project   Megamenu
+ */
+/** @var \Boolfly\ProductLabel\Block\Label $block */
+$group = $block->getGroupRule();
+?>
+<?php if (!empty($group)) :?>
+    <?php foreach ($group as $type => $rules) :?>
+        <span class="boolfly-label product-label-info <?= /* @escapeNotVerified */ $type;?>">
+            <?php /** @var \Boolfly\ProductLabel\Model\Rule $rule */
+            foreach ($rules as $rule) :?>
+                <span class="product-label <?= /* @escapeNotVerified */ $rule->getAdditionalClass()?>"
+                      style="<?= /* @escapeNotVerified */ $rule->getCssStyleCategory()?>">
+                    <?php if ($rule->isUseImageInList()) :?>
+                        <img class="label"
+                             alt="<?= /* @escapeNotVerified */ $rule->getTitle()?>"
+                             src="<?= /* @escapeNotVerified */ $rule->getCategoryImageUrl()?>"/>
+                    <?php else :?>
+                        <span class="text-label">
+                            <?= /* @escapeNotVerified */ $rule->getCategoryText()?>
+                        </span>
+                    <?php endif;?>
+                </span>
+            <?php endforeach;?>
+        </span>
+    <?php endforeach;?>
+<?php endif;?>
