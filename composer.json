@@ -3,7 +3,7 @@
   "description": "Product Label Module",
   "require": {
     "php": "~7.1.3||~7.2.0||~7.3.0",
-    "boolfly/module-base": "100.0.*"
+    "boolfly/module-base": "^1.0.0"
   },
   "type": "magento2-module",
   "license": [
@@ -17,6 +17,5 @@
     "psr-4": {
       "Boolfly\\ProductLabel\\": ""
     }
-  },
-  "version": "100.0.0"
+  }
 }
