@@ -50,9 +50,9 @@ class DataProvider extends AbstractDataProvider
     /**
      * DataProvider constructor.
      *
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $collectionFactory
      * @param ImageUploader     $imageUploader
      * @param Registry          $registry
@@ -60,9 +60,9 @@ class DataProvider extends AbstractDataProvider
      * @param array             $data
      */
     public function __construct(
-        $name,
-        $primaryFieldName,
-        $requestFieldName,
+        string $name,
+        string $primaryFieldName,
+        string $requestFieldName,
         CollectionFactory $collectionFactory,
         ImageUploader $imageUploader,
         Registry $registry,
