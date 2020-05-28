@@ -6,7 +6,7 @@
 ##### Using Composer (we recommended)
 
 ```
-composer require boolfly/module-ajax-compare
+composer require boolfly/module-product-label
 ```
 
 ## 1. Configuration
