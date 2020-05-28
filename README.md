@@ -1,5 +1,14 @@
 # Product Label
 
+
+## Installation
+
+##### Using Composer (we recommended)
+
+```
+composer require boolfly/module-ajax-compare
+```
+
 ## 1. Configuration
 
 ### General Configuration
@@ -123,10 +132,36 @@ Upload image to display on the product label (only apply when selecting image fo
 ##### Css Style Code:
 Style inline css for the product label.
 
-## 3. Frontend
+## 3. How does it work?
 
 ### Product Listing
 ![New Rule](https://github.com/boolfly/wiki/blob/master/magento/magento2/images/product-label/product-label-06.png)
 
 ### Product Page
 ![New Rule](https://github.com/boolfly/wiki/blob/master/magento/magento2/images/product-label/product-label-07.png)
+
+
+Contribution
+---
+Want to contribute to this extension? The quickest way is to open a [pull request on GitHub](https://help.github.com/articles/using-pull-requests)
+
+Magento 2 Extensions
+---
+
+- [Ajax Wishlist](https://github.com/boolfly/ajax-wishlist) 
+- [Quick View](https://github.com/boolfly/quick-view)
+- [Banner Slider](https://github.com/boolfly/banner-slider)
+- [Product Label](https://github.com/boolfly/product-label) 
+- [ZaloPay](https://github.com/boolfly/zalo-pay) 
+- [Momo](https://github.com/boolfly/momo-wallet) 
+- [Blog](https://github.com/boolfly/blog)
+- [Brand](https://github.com/boolfly/brand) 
+- [Product Question](https://github.com/boolfly/product-question) 
+- [Sales Sequence](https://github.com/boolfly/sales-sequence) 
+
+Support
+---
+If you encounter any problems or bugs, please open an issue on [GitHub](https://github.com/boolfly/product-label/issues).
+
+Need help settings up or want to customize this extension to meet your business needs? Please email boolfly.inc@gmail.com and if we like your idea we will add this feature for free or at a discounted rate.
+
