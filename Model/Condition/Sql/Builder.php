@@ -411,7 +411,7 @@ class Builder
         if ($this->productEntityIdentifierField === null) {
             $this->productEntityIdentifierField = $this->getMetadataPool()
                 ->getMetadata(ProductInterface::class)
-                ->getLinkField();
+                ->getIdentifierField();
         }
         return $this->productEntityIdentifierField;
     }
